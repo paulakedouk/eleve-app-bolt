@@ -21,14 +21,14 @@ eleve-app/
 ### Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
+- pnpm 8.15.4+
 - Expo CLI (for mobile development)
 
 ### Installation
 
 1. Install dependencies for all packages:
 ```bash
-npm install
+pnpm install
 ```
 
 2. Set up environment variables:
@@ -40,21 +40,21 @@ npm install
 
 #### Run both apps in development:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 #### Run specific apps:
 ```bash
 # Web app only
-npm run dev:web
+pnpm run dev:mobile
 
 # Mobile app only  
-npm run dev:mobile
+pnpm run dev:mobile
 ```
 
 #### Build all apps:
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Apps
@@ -112,12 +112,12 @@ The shared Supabase client automatically uses the appropriate environment variab
 
 ## Scripts
 
-- `npm run dev` - Start all apps in development mode
-- `npm run dev:web` - Start only the web app
-- `npm run dev:mobile` - Start only the mobile app  
-- `npm run build` - Build all apps
-- `npm run lint` - Lint all apps
-- `npm run test` - Run tests for all apps
+- `pnpm run dev` - Start all apps in development mode
+- `pnpm run dev:web` - Start only the web app
+- `pnpm run dev:mobile` - Start only the mobile app  
+- `pnpm run build` - Build all apps
+- `pnpm run lint` - Lint all apps
+- `pnpm run test` - Run tests for all apps
 
 ## Database
 
