@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Registration - Elevé</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Archivo:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #eeeeee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; 
+            color: #000000;
+            padding: 2rem 0;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 2px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #91A8EB;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #000000;
+            position: relative;
+            border-bottom: 2px solid #000000;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            color: #000;
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 2.5rem;
+        }
+
+        .step-title {
+            font-size: 26px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .step-subtitle {
+            font-size: 16px;
+            color: #000;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #000000;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0;
+            }
+            
+            .container {
+                width: 95%;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .form-group.full-width {
+                grid-column: 1;
+            }
+            
+            .header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Archivo', sans-serif;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #91A8EB;
+            box-shadow: 0 0 0 3px rgba(145, 168, 235, 0.1);
+        }
+
+        .form-group input:disabled {
+            background: #f8fafc;
+            color: #64748B;
+            cursor: not-allowed;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #64748B;
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            color: #000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #64748B;
+        }
+
+        .submit-btn {
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 900;
+            font-family: 'ArchivoBlack-Regular', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 4px 4px 0px #000000;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px #000000;
+            background: #333333;
+        }
+
+        .submit-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 4px 4px 0px #000000;
+            color: #64748B;
+        }
+
+        .message {
+            font-size: 14px;
+            margin: 1rem 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: #dc2626;
+            background: #fef2f2;
+            border-color: #dc2626;
+        }
+
+        .success-message {
+            color: #16a34a;
+            background: #f0fdf4;
+            border-color: #16a34a;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Step visibility */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        /* Password visibility toggle */
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748B;
+            cursor: pointer;
+            font-size: 18px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Success Card Styles */
+        .success-card {
+            background: #ffffff;
+        }
+
+        .success-card .emoji {
+            font-size: 64px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .success-card .title {
+            font-size: 32px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            color: #16a34a;
+            margin-bottom: 1rem;
+        }
+
+        .success-card .message {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #64748B;
+            margin-bottom: 2rem;
+            font-family: 'Archivo', sans-serif;
+            display: block;
+        }
+
+        .success-card .next-steps {
+            /* background: #f0fdf4; */
+            /* border: 1px solid #16a34a; */
+            /* border-radius: 8px; */
+            /* padding: 1.5rem; */
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .success-card .next-steps h4 {
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            color: #16a34a;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-card .next-steps p {
+            font-size: 14px;
+            color: #64748B;
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        .success-card .next-steps ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .success-card .next-steps li {
+            color: #64748B;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .login-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            font-weight: 900;
+            font-family: 'ArchivoBlack-Regular', sans-serif;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #000000;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0px #000000;
+            background: #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eleve-logo.svg" alt="Elevé Logo">
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-title">Welcome to the Family!</div>
+            <div class="header-subtitle">Create your parent account to get started</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Step 1: Accept Invitation & Create Account -->
+            <div class="step active" id="step1">
+                <div class="step-title">Accept Invitation & Create Account</div>
+                <div class="step-subtitle">Complete your parent profile to join the program</div>
+
+                <form id="accountForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="parentName">Full Name *</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="parentEmail">Email Address</label>
+                        <div class="input-container">
+                            <input type="email" id="parentEmail" name="parentEmail" placeholder="Loading..." disabled>
+                            <span class="input-icon">✓</span>
+                        </div>
+                        <div class="help-text">This email is pre-filled from your invitation</div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <div class="input-container">
+                                <input type="password" id="password" name="password" placeholder="Create a password"
+                                    required>
+                                <button type="button" class="password-toggle"
+                                    onclick="togglePassword('password')">
+                                    <img src="https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eye-off.svg" alt="Toggle password visibility" width="18" height="18">
+                                </button>
+                            </div>
+                            <div class="help-text">Must be at least 6 characters</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <div class="input-container">
+                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                    placeholder="Confirm your password" required>
+                                <button type="button" class="password-toggle"
+                                    onclick="togglePassword('confirmPassword')">
+                                    <img src="https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eye-off.svg" alt="Toggle password visibility" width="18" height="18">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>What's Next?</h4>
+                        <p>After creating your account, you'll be able to log in to your parent dashboard where you can add your children's information and track their progress.</p>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="createAccountBtn">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="errorMessage" class="message error-message"></div>
+        <div id="successMessage" class="message success-message"></div>
+    </div>
+
+    <script type="module">
+        // Import and initialize Supabase
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+        const supabaseUrl = 'https://noaeiuejccwfabjhjndy.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vYWVpdWVqY2N3ZmFiamhqbmR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwMTk3ODEsImV4cCI6MjA2NzU5NTc4MX0.E33Wv1XDmjxrzxaTYCbbJwVfa7GackRrMYUtLFbvEk4';
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        // Global state
+        let invitationData = null;
+
+        // Initialize the page
+        window.addEventListener('load', async function () {
+            console.log('Parent registration page loaded');
+            await initializePage();
+        });
+
+        async function initializePage() {
+            try {
+                // Get invitation code from URL   
+                const invitationCode = getInvitationCodeFromURL();
+
+                if (!invitationCode) {
+                    throw new Error('No invitation code found in URL');
+                }
+
+                console.log('Loading invitation data for code:', invitationCode);
+
+                // Fetch invitation data from Supabase
+                const { data: invitation, error: invitationError } = await supabase
+                    .from('invitations')
+                    .select('email, recipient_name, organization_id, expires_at, status')
+                    .eq('code', invitationCode)
+                    .eq('role', 'parent')
+                    .single();
+
+                if (invitationError) {
+                    console.error('Failed to load invitation:', invitationError);
+                    throw new Error('Invalid or expired invitation link');
+                }
+
+                if (invitation.status !== 'pending') {
+                    throw new Error('This invitation has already been used');
+                }
+
+                if (invitation.expires_at && new Date(invitation.expires_at) < new Date()) {
+                    throw new Error('This invitation has expired');
+                }
+
+                console.log('Invitation loaded successfully:', invitation);
+
+                // Fill in the email from invitation
+                document.getElementById('parentEmail').value = invitation.email;
+                document.getElementById('parentEmail').disabled = true; // Keep it disabled since it's from invitation
+
+                // If invitation has a name, pre-fill that too
+                if (invitation.recipient_name && invitation.recipient_name !== invitation.email) {
+                    document.getElementById('parentName').value = invitation.recipient_name;
+                }
+
+                // Store invitation data globally for later use
+                invitationData = invitation;
+
+
+
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showError(error.message);
+            }
+        }
+
+                // No step navigation needed anymore - single step registration
+
+        // Password toggle
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const toggle = field.nextElementSibling;
+
+            if (field.type === 'password') {
+                field.type = 'text';
+                // If the toggle is a button containing an <img>, update the image src to show the "eye" (visible) icon
+                if (toggle.tagName === 'BUTTON' && toggle.querySelector('img')) {
+                    toggle.querySelector('img').src = 'https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eye.svg';
+                }
+            } else {
+                field.type = 'password';
+                // If the toggle is a button containing an <img>, update the image src to show the "eye-off" (hidden) icon
+                if (toggle.tagName === 'BUTTON' && toggle.querySelector('img')) {
+                    toggle.querySelector('img').src = 'https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eye-off.svg';
+                }
+            }
+        }
+
+
+
+        // Helper function to get invitation code from URL
+        function getInvitationCodeFromURL() {
+            const pathParts = window.location.pathname.split('/');
+            const invitationCode = pathParts[pathParts.length - 1];
+            return invitationCode && invitationCode !== 'index.html' ? invitationCode : null;
+        }
+
+        // Make functions globally accessible
+        window.togglePassword = togglePassword;
+
+        // Form handling - Create parent account
+        document.getElementById('accountForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('createAccountBtn');
+            btn.disabled = true;
+            btn.textContent = 'Creating Account...';
+
+            try {
+                const formData = new FormData(this);
+                const invitationCode = getInvitationCodeFromURL();
+                
+                if (!invitationCode) {
+                    throw new Error('No invitation code found');
+                }
+
+                // Validate form data
+                const parentName = formData.get('parentName');
+                const parentEmail = formData.get('parentEmail') || invitationData?.email;
+                const phoneNumber = formData.get('phoneNumber');
+                const password = formData.get('password');
+                const confirmPassword = formData.get('confirmPassword');
+
+                if (!parentName || !parentEmail || !phoneNumber || !password) {
+                    throw new Error('Please fill in all required fields');
+                }
+
+                if (password !== confirmPassword) {
+                    throw new Error('Passwords do not match');
+                }
+
+                if (password.length < 6) {
+                    throw new Error('Password must be at least 6 characters long');
+                }
+
+                console.log('Creating parent account...');
+
+                // Create the parent account directly
+                const createResponse = await fetch(`${supabaseUrl}/functions/v1/submit-family-approval`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${supabaseAnonKey}`,
+                        'apikey': supabaseAnonKey
+                    },
+                    body: JSON.stringify({
+                        parentData: {
+                            name: parentName,
+                            email: parentEmail,
+                            phone: phoneNumber,
+                            password: password
+                        },
+                        children: [], // No children in initial registration
+                        additionalNotes: '',
+                        invitationCode: invitationCode
+                    })
+                });
+
+                console.log('Create response status:', createResponse.status);
+                console.log('Create response headers:', createResponse.headers);
+                
+                let createResult;
+                try {
+                    createResult = await createResponse.json();
+                } catch (parseError) {
+                    console.error('Failed to parse create response:', parseError);
+                    throw new Error('Server returned invalid response');
+                }
+                
+                console.log('Create response data:', createResult);
+
+                if (!createResponse.ok || !createResult.success) {
+                    throw new Error(createResult.error || `Failed to create account: ${createResponse.status}`);
+                }
+
+                console.log('✅ Parent account created successfully!');
+                console.log('createResult:', createResult);
+
+                // Show success message
+                console.log('Calling showAccountCreatedSuccess...');
+                showAccountCreatedSuccess(createResult.organizationName || 'Academy');
+                console.log('showAccountCreatedSuccess called');
+
+            } catch (error) {
+                console.error('Account creation error:', error);
+                showError(error.message);
+                btn.disabled = false;
+                btn.textContent = 'Create Account';
+            }
+        });
+
+
+
+        // Message handling
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+
+            // Scroll to message
+            errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            // Scroll to message
+            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function showInfo(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            successDiv.style.backgroundColor = '#91A8EB';
+            successDiv.style.color = '#000';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            // Scroll to message
+            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function showAccountCreatedSuccess(organizationName) {
+            const step1Content = document.getElementById('step1');
+            step1Content.innerHTML = `
+                <div class="success-card">
+                    <span class="emoji">🎉</span>
+                    <div class="title">Account Created Successfully!</div>
+                    <div class="message">
+                        Welcome to ${organizationName}! Your parent account has been created and you're now part of our skateboarding community.
+                    </div>
+                    <div class="next-steps">
+                        <h4>📋 What's Next?</h4>
+                        <p><strong>Log in to your parent dashboard</strong> to:</p>
+                        <ul style="text-align: left; margin: 15px 0;">
+                            <li>Add your children's information</li>
+                            <li>Track their progress and achievements</li>
+                            <li>View session reports and videos</li>
+                            <li>Communicate with coaches</li>
+                        </ul>
+                        <p>You can access your dashboard from both the web portal and mobile app using the same login credentials.</p>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <a href="/web/login.html" class="login-button">
+                            Go to Login
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            // Hide error and success messages
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - Eleve</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        .loading {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .success {
+            color: #4caf50;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        .error {
+            color: #f44336;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        .button {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🛹 Eleve</div>
+        <div id="status" class="loading">Verifying your email...</div>
+        <div id="actions" style="display: none;">
+            <p>Your email has been verified successfully!</p>
+            <a href="#" id="openApp" class="button">Open Eleve App</a>
+            <a href="https://tryeleve.com" class="button">Go to Website</a>
+        </div>
+        <div id="error-content" style="display: none;">
+            <p class="error">Email verification failed or expired.</p>
+            <p>Please try signing up again or request a new verification email.</p>
+            <a href="https://tryeleve.com" class="button">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Supabase client
+        const supabaseUrl = 'https://noaeiuejccwfabjhjndy.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vYWVpd2VqY2N3ZmFiamhqbmR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwMTk3ODEsImV4cCI6MjA2NzU5NTc4MX0.E33Wv1XDmjxrzxaTYCbbJwVfa7GackRrMYUtLFbvEk4';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function handleEmailVerification() {
+            try {
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const token = urlParams.get('token');
+                const type = urlParams.get('type');
+                
+                // Check if this is an email verification
+                if (type === 'email' && token) {
+                    const { data, error } = await supabase.auth.verifyOtp({
+                        token_hash: token,
+                        type: 'email'
+                    });
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    // Success
+                    document.getElementById('status').style.display = 'none';
+                    document.getElementById('actions').style.display = 'block';
+                    
+                    // Set up deep link to app
+                    document.getElementById('openApp').href = 'tryeleve://auth/verified';
+                    
+                } else {
+                    // Check if there's an error in the URL
+                    const error = urlParams.get('error');
+                    if (error) {
+                        throw new Error(error);
+                    } else {
+                        throw new Error('No verification token found');
+                    }
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                document.getElementById('status').style.display = 'none';
+                document.getElementById('error-content').style.display = 'block';
+            }
+        }
+
+        // Run when page loads
+        window.addEventListener('load', handleEmailVerification);
+    </script>
+</body>
+</html> 

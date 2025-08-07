@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ORG_NAME}} - Portal Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #764ba2;
+            transform: scale(1.1);
+        }
+
+        .org-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .org-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .org-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .org-subtitle {
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .login-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #718096;
+            font-size: 1.2rem;
+        }
+
+        .user-type-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .user-type-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .user-type-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .user-type-btn:hover:not(.active) {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .submit-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .help-text {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .help-text a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #e2e8f0;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .admin-notice {
+            background: #fef5e7;
+            color: #744210;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .admin-notice a {
+            color: #744210;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .org-name {
+                font-size: 1.5rem;
+            }
+            
+            .user-type-selector {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/'">&larr;</button>
+        
+        <div class="org-header">
+            <div class="org-logo">🛹</div>
+            <h1 class="org-name">{{ORG_NAME}}</h1>
+            <p class="org-subtitle">Portal Login</p>
+        </div>
+
+        <div class="admin-notice">
+            <p>👨‍💼 Organization admin? <a href="/login">Sign in here</a></p>
+        </div>
+
+        <div id="messages"></div>
+
+        <form id="login-form" class="login-form">
+            <div class="user-type-selector">
+                <button type="button" class="user-type-btn active" onclick="selectUserType('student')">
+                    👨‍🎓 Student
+                </button>
+                <button type="button" class="user-type-btn" onclick="selectUserType('parent')">
+                    👨‍👩‍👧‍👦 Parent
+                </button>
+                <button type="button" class="user-type-btn" onclick="selectUserType('coach')">
+                    👨‍🏫 Coach
+                </button>
+            </div>
+
+            <div class="form-group">
+                <label for="login-input">Username or Email</label>
+                <input type="text" id="login-input" placeholder="Enter your username or email" required>
+            </div>
+
+            <div class="form-group" id="password-group">
+                <label for="password">Password</label>
+                <div class="password-group">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button" id="submit-btn">Login</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Logging in...</p>
+        </div>
+
+        <div class="help-text">
+            <p>Need help? <a href="#" onclick="showHelp()">Contact support</a></p>
+            <p style="margin-top: 0.5rem;">
+                <small>Students and parents are invited by their coaches</small>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentUserType = 'student';
+        let isLoading = false;
+        let orgSlug = '{{ORG_SLUG}}';
+
+        function selectUserType(type) {
+            currentUserType = type;
+            
+            // Update active button
+            document.querySelectorAll('.user-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update form based on user type
+            updateFormForUserType(type);
+        }
+
+        function updateFormForUserType(type) {
+            const loginInput = document.getElementById('login-input');
+            const passwordGroup = document.getElementById('password-group');
+            
+            if (type === 'student') {
+                loginInput.placeholder = 'Enter your username';
+                passwordGroup.style.display = 'none';
+                document.getElementById('password').required = false;
+            } else {
+                loginInput.placeholder = 'Enter your email';
+                passwordGroup.style.display = 'block';
+                document.getElementById('password').required = true;
+            }
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const button = passwordInput.nextElementSibling;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        function showMessage(message, type = 'error') {
+            const messagesDiv = document.getElementById('messages');
+            const messageClass = type === 'error' ? 'error-message' : 'success-message';
+            messagesDiv.innerHTML = `<div class="${messageClass}">${message}</div>`;
+        }
+
+        function setLoading(loading) {
+            isLoading = loading;
+            const loadingDiv = document.getElementById('loading');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (loading) {
+                loadingDiv.classList.add('active');
+                submitBtn.disabled = true;
+            } else {
+                loadingDiv.classList.remove('active');
+                submitBtn.disabled = false;
+            }
+        }
+
+        function validateForm() {
+            const loginInput = document.getElementById('login-input').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!loginInput) {
+                showMessage('Please enter your username or email.');
+                return false;
+            }
+
+            if (currentUserType !== 'student' && !password) {
+                showMessage('Please enter your password.');
+                return false;
+            }
+
+            return true;
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            if (isLoading || !validateForm()) return;
+
+            setLoading(true);
+
+            try {
+                const loginInput = document.getElementById('login-input').value.trim();
+                const password = document.getElementById('password').value;
+
+                let loginData = {
+                    userType: currentUserType,
+                    orgSlug: orgSlug,
+                };
+
+                if (currentUserType === 'student') {
+                    loginData.username = loginInput;
+                } else {
+                    loginData.email = loginInput;
+                    loginData.password = password;
+                }
+
+                const response = await fetch('/api/org-auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('Login successful! Redirecting...', 'success');
+                    
+                    // Redirect based on user type
+                    setTimeout(() => {
+                        switch (currentUserType) {
+                            case 'student':
+                                window.location.href = `/student`;
+                                break;
+                            case 'parent':
+                                window.location.href = `/parent`;
+                                break;
+                            case 'coach':
+                                window.location.href = `/coach`;
+                                break;
+                        }
+                    }, 1000);
+                } else {
+                    showMessage(data.message || 'Login failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('An error occurred. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function showHelp() {
+            alert(`For help with ${currentUserType} login, please contact your organization administrator or coach.`);
+        }
+
+        // Initialize form
+        document.getElementById('login-form').addEventListener('submit', handleSubmit);
+        
+        // Initialize form for student login (default)
+        updateFormForUserType('student');
+        
+        // Set organization name from URL or default
+        const pathParts = window.location.pathname.split('/');
+        const orgFromUrl = pathParts[1];
+        if (orgFromUrl && orgFromUrl !== 'login') {
+            orgSlug = orgFromUrl;
+            // You could also update the org name display here
+        }
+    </script>
+</body>
+</html> 

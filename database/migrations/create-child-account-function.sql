@@ -1,0 +1,18 @@
+-- Child Account Creation Setup
+-- 
+-- Child account creation is handled by the 'create-child-account' Supabase Edge Function
+-- which has proper service role permissions to create auth users securely.
+--
+-- The Edge Function is located at: supabase/functions/create-child-account/index.ts
+-- and has been deployed to handle:
+-- 1. Username uniqueness validation
+-- 2. Auth user creation with proper metadata
+-- 3. Profile record creation
+-- 4. Student record creation
+-- 5. Parent-child linking
+-- 6. Automatic cleanup on errors
+--
+-- This approach is more secure than database functions as it uses Supabase's
+-- service role permissions through the Edge Function runtime.
+
+-- No database functions needed - everything is handled by the Edge Function! 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're Invited - Elevé</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Archivo:wght@400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F7F7F7;
+      padding: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #000000;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 90%;
+      overflow: hidden;
+    }
+
+    .eleve-logo {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .eleve-logo img {
+      height: 60px;
+    }
+
+    .eleve-panel {
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 #000000;
+    }
+
+    .header {
+      background: #8B5CF6;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #000000;
+    }
+
+    .header-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .header-subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: #FFFFFF;
+      opacity: 0.95;
+    }
+
+    .content {
+      padding: 2.5rem;
+    }
+
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .welcome-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #000000;
+    }
+
+    .welcome-subtitle {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .academy-info {
+      background: #C4B5FD;
+      border: 2px solid #000000;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .academy-info h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      color: #000000;
+    }
+
+    .academy-info ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .academy-info li {
+      font-size: 16px;
+      margin: 0.8rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #000000;
+      font-weight: 500;
+    }
+
+    .academy-info li::before {
+      content: "•";
+      color: #000000;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 18px;
+    }
+
+    .cta-section {
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .cta-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #000000;
+    }
+
+    .cta-subtitle {
+      font-size: 15px;
+      color: #64748B;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background: #000000;
+      color: #FFFFFF;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      box-shadow: 4px 4px 0 #000000;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      font-family: 'Archivo', sans-serif;
+      letter-spacing: 0.5px;
+      border: 2px solid #000000;
+    }
+
+    .cta-button:hover {
+      background: #333333;
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 #000000;
+    }
+
+    .secondary-info {
+      font-size: 13px;
+      margin-top: 1rem;
+      color: #64748B;
+      padding: 1rem;
+      background: #F8FAFC;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .contact-info {
+      border: 2px solid #000000;
+      background: #F8FAFC;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .contact-info h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #000000;
+    }
+
+    .contact-info p {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+
+    .contact-info a {
+      color: #8B5CF6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #64748B;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0;
+      }
+
+      .container {
+        width: 95%;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .header {
+        padding: 2rem 1.5rem;
+      }
+
+      .header-title {
+        font-size: 22px;
+      }
+
+      .welcome-title {
+        font-size: 20px;
+      }
+
+      .academy-info {
+        padding: 1.5rem;
+      }
+
+      .cta-section {
+        padding: 1.5rem;
+      }
+
+      .cta-button {
+        font-size: 15px;
+        padding: 0.9rem 1.5rem;
+      }
+
+      .eleve-logo {
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="eleve-logo">
+      <img src="https://eleve-native-app.s3.us-east-2.amazonaws.com/public/assets/images/eleve-logo.svg"
+        alt="Elevé Logo" />
+    </div>
+    
+    <div class="eleve-panel">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-title">You're Invited as a Parent!</div>
+        <div class="header-subtitle">Join your child's journey with Elevé</div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Welcome -->
+        <div class="welcome-section">
+          <div class="welcome-title">Hi [PARENT_NAME]!</div>
+          <div class="welcome-subtitle">
+            Great news! You've been invited to join <strong>[ACADEMY_NAME]</strong> as a parent on Elevé – the modern
+            action sports academy platform.
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="academy-info">
+          <h3>What You'll Be Able To Do</h3>
+          <ul>
+            <li>Create accounts for your children</li>
+            <li>Monitor your children's progress and achievements</li>
+            <li>Receive notifications about sessions and milestones</li>
+            <li>Access detailed progress reports</li>
+            <li>Communicate with coaches and academy staff</li>
+            <li>View video analysis and coaching feedback</li>
+            <li>Track skill development over time</li>
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+          <div class="cta-title">Let's Get Started</div>
+          <div class="cta-subtitle">
+            Click below to accept your invitation and connect with your child's skateboarding journey!
+          </div>
+          <a href="[INVITATION_LINK]" class="cta-button">Accept Invitation & Get Started</a>
+          <div class="secondary-info">
+            This invitation expires in 7 days. Make sure to accept it before then!
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-info">
+          <h4>Need Help?</h4>
+          <p>
+            Reach out to us at <a href="mailto:[ACADEMY_EMAIL]">[ACADEMY_EMAIL]</a> if you have any questions
+            about the platform or need assistance getting started.
+          </p>
+        </div>
+        
+        <div class="footer">
+          Powered by Elevé – The future of action sports education
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html> 

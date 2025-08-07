@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "Eleve",
+    "slug": "eleve-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./src/assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Eleve needs access to camera to record student videos",
+        "NSMicrophoneUsageDescription": "Eleve needs access to microphone to record student videos",
+        "NSPhotoLibraryUsageDescription": "Eleve needs access to photo library to save videos"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "package": "com.paulakedouk.eleveapp"
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png",
+      "name": "Eleve - Skateboarding Coaching App",
+      "shortName": "Eleve",
+      "lang": "en",
+      "scope": "/",
+      "themeColor": "#667eea",
+      "backgroundColor": "#ffffff",
+      "display": "standalone",
+      "orientation": "portrait",
+      "startUrl": "/",
+      "bundler": "metro"
+    },
+    "fonts": [
+      "./public/fonts/Poppins-ExtraBold.ttf",
+      "./public/fonts/Poppins-Medium.ttf",
+      "./public/fonts/ArchivoBlack-Regular.ttf",
+      "./public/fonts/Archivo-Medium.ttf"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b83a5a8e-3141-4643-9eba-3b640e855dcf"
+      }
+    },
+    "owner": "paulakedouk"
+  }
+}

@@ -1,0 +1,5 @@
+{
+    "buildCommand": "turbo run build --filter=web...",
+    "outputDirectory": "apps/web/.next",
+    "rootDirectory": "apps/web"
+}

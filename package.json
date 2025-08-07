@@ -1,0 +1,26 @@
+{
+  "name": "eleve-monorepo",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.15.4",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:mobile": "turbo run dev --filter=mobile",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
+    "vercel-build": "pnpm install && turbo run build --filter=web",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.14",
+    "turbo": "^2.5.5",
+    "typescript": "~5.8.3"
+  },
+  "private": true
+}
